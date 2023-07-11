@@ -1,0 +1,10 @@
+[package]
+name = "cli-failure"
+description = "Provides `Failure(String)` implementing `std::error::Error`. Includes convenience macros making it perfect for usage with `wrap-match` in CLIs."
+authors = ["naturecodevoid"]
+homepage = "https://github.com/naturecodevoid/cli-failure"
+repository = "https://github.com/naturecodevoid/cli-failure"
+documentation = "https://docs.rs/cli-failure"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
