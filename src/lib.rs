@@ -53,7 +53,7 @@ macro_rules! failure_raw {
 /// It is recommend to use [`failure!`] or [`failure_raw!`] to construct a `Failure` as this saves typing `"...".to_owned()` or `format!("...")`.
 ///
 /// See [module level documentation](crate) for more docs
-pub struct Failure(String);
+pub struct Failure(pub String);
 
 impl Failure {
     #[inline]
