@@ -11,7 +11,7 @@ via other means.
 
 ## Example
 
-```rs
+```
 // wrap-match is not required, but it is highly recommended
 fn example() -> Result<(), Box<dyn Error>> {
     let result = "bad";
