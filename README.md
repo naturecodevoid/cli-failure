@@ -15,7 +15,11 @@ via other means.
 fn example() -> Result<(), Box<dyn Error>> {
     let result = "bad";
     // With convenience macros
+
+    // These two lines are the same
+    bail!("something {result} happened");
     return failure!("something {result} happened");
+
     return failure_raw!("something {result} happened").err_boxed();
     return Err(failure_raw!("something {result} happened").boxed());
     // Manually

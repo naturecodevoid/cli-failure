@@ -16,7 +16,11 @@ via other means.
 fn example() -> Result<(), Box<dyn Error>> {
     let result = "bad";
     // With convenience macros
+
+    // These two lines are the same
+    bail!("something {result} happened");
     return failure!("something {result} happened");
+
     return failure_raw!("something {result} happened").err_boxed();
     return Err(failure_raw!("something {result} happened").boxed());
     // Manually
@@ -29,6 +33,16 @@ fn example() -> Result<(), Box<dyn Error>> {
 
 use std::error::Error;
 use std::fmt::{Debug, Display};
+
+#[macro_export]
+/// Returns a [`Failure`] after calling [`Failure::err_boxed()`]. Any arguments to this macro will be passed to `format_args!`, allowing formatting specifiers to be used.
+///
+/// See [module level documentation](crate) for more docs
+macro_rules! bail {
+    ($($args:tt)*) => {
+        return $crate::failure!($($args)*)
+    }
+}
 
 #[macro_export]
 /// Constructs a [`Failure`] and calls [`Failure::err_boxed()`]. Any arguments to this macro will be passed to `format_args!`, allowing formatting specifiers to be used.
@@ -96,7 +110,7 @@ impl Debug for Failure {
     unused_variables // since result is used in unreachable code the compiler says it's unused
 )]
 fn tests() {
-    Failure("a".into()).to_string();
+    assert_eq!(Failure("a".into()).to_string(), "a".to_owned());
     fn failure() -> Result<(), Failure> {
         let result = "bad";
         return Failure("test".to_owned()).err();
@@ -111,6 +125,7 @@ fn tests() {
         let result = "bad";
         return Failure("test".to_owned()).err_boxed();
         return Err(Failure("test".to_owned()).boxed());
+        bail!("{result}");
         return failure!("{result}");
         return failure_raw!("{}", result).err_boxed();
         return Err(failure_raw!("{result}").boxed());
