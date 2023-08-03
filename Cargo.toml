@@ -5,6 +5,6 @@ authors = ["naturecodevoid"]
 homepage = "https://github.com/naturecodevoid/cli-failure"
 repository = "https://github.com/naturecodevoid/cli-failure"
 documentation = "https://docs.rs/cli-failure"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2021"
 license = "MIT"
